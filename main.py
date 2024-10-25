@@ -7,7 +7,7 @@ from jinja2 import Template
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from secret import sender_email, sender_password
+# from secret import sender_email, sender_password
 
 # SQLAlchemy setup
 SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"  # Replace with your DB URL
@@ -115,8 +115,7 @@ def generate_certificate_html(student_name, course_name, completion_date):
 # Function to send certificate email
 def send_certificate_email(email: str, certificate_html: str):
     receiver_email = email
-    sender_email = "adithyen1@gmail.com"
-    sender_password = "irvmx zcuj fvgs lpsn"
+    
     
     # Create email
     msg = MIMEMultipart("alternative")
