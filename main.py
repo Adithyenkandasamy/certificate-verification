@@ -54,18 +54,69 @@ class VerifyCertificateData(BaseModel):
 # Certificate generation HTML template
 def generate_certificate_html(student_name, course_name, completion_date):
     template = Template("""
-    <html>
-    <body>
+   <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate of Completion</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+        .certificate-container {
+            border: 5px solid #000;
+            padding: 30px;
+            width: 700px;
+            background-color: #fff;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .company-name {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.5em;
+            margin: 30px 0;
+        }
+        .completion-details {
+            font-size: 1.1em;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="certificate-container">
         <h1>Certificate of Completion</h1>
-        <p>This certifies that {{ student_name }} has successfully completed the course {{ course_name }} on {{ completion_date }}.</p>
-    </body>
-    </html>
+        <div class="company-name">
+            Awarded by: <strong>SNS</strong>
+        </div>
+        <p>This certifies that <strong>{{ student_name }}</strong> has successfully completed the course <strong>{{ course_name }}</strong> on <strong>{{ completion_date }}</strong>.</p>
+        <div class="completion-details">
+            <p>Congratulations on your achievement!</p>
+        </div>
+    </div>
+</body>
+</html>
+
     """)
     return template.render(student_name=student_name, course_name=course_name, completion_date=completion_date)
 
 # Function to send certificate email
 def send_certificate_email(email: str, certificate_html: str):
     receiver_email = email
+    sender_email = "adithyen1@gmail.com"
+    sender_password = "irvmx zcuj fvgs lpsn"
     
     # Create email
     msg = MIMEMultipart("alternative")
